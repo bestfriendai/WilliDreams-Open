@@ -2,7 +2,7 @@
 A dream tracking app with social features
 
 ### Introduction
-WilliDreams, originally released March 31, 2025 is a dream journal iOS and macOS app with the ability to share dreams with other users using SwiftUI, SwiftData and Firebase. 
+WilliDreams, originally released March 31, 2025 is a dream journal iOS and macOS app with the ability to share dreams with other users using SwiftUI, SwiftData and Firebase. WilliDream's final update (v1.4) has released on December 3, 2025 and the app is no longer recieving updates.
 
 ### Download
 You can find WilliDreams here:
