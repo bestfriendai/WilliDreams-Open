@@ -1,0 +1,729 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B1511F5A2E5A84F30073E86C /* FirebaseAI in Frameworks */ = {isa = PBXBuildFile; productRef = B1511F592E5A84F30073E86C /* FirebaseAI */; };
+		BA1D02662C56256700B1BD2C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = BA1D02652C56256700B1BD2C /* FirebaseAuth */; };
+		BA1D02682C56256700B1BD2C /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = BA1D02672C56256700B1BD2C /* FirebaseFirestore */; };
+		BA1D026C2C56256700B1BD2C /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = BA1D026B2C56256700B1BD2C /* FirebaseStorage */; };
+		BA1D02712C5625DE00B1BD2C /* UserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1D02702C5625DB00B1BD2C /* UserObject.swift */; };
+		BA1D02752C56266F00B1BD2C /* FirstStartup.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1D02742C56266B00B1BD2C /* FirstStartup.swift */; };
+		BA31F84E2D94D3D1001B303E /* DreamReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA31F84D2D94D3C8001B303E /* DreamReport.swift */; };
+		BA3EF7932D8A7D9B00A62A78 /* ContactSyncing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA3EF7922D8A7D9800A62A78 /* ContactSyncing.swift */; };
+		BA3EF7952D8A860400A62A78 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BA3EF7942D8A860400A62A78 /* Localizable.xcstrings */; };
+		BA4F22742D75012800A0F27A /* Manage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4F22732D75012800A0F27A /* Manage.swift */; };
+		BA4F22762D75012C00A0F27A /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4F22752D75012C00A0F27A /* Profile.swift */; };
+		BA4F22782D7569D400A0F27A /* ProfileNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4F22772D7569CF00A0F27A /* ProfileNavigationLink.swift */; };
+		BA5D31B22D742C7C00EFCDC2 /* FriendButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D31B12D742C7900EFCDC2 /* FriendButton.swift */; };
+		BA64756F2D68450500EEDF6B /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA64756E2D68450500EEDF6B /* AuthManager.swift */; };
+		BA6475722D68457C00EEDF6B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6475702D68457C00EEDF6B /* LoginView.swift */; };
+		BA6475732D68457C00EEDF6B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6475712D68457C00EEDF6B /* SignUpView.swift */; };
+		BA6475772D68463100EEDF6B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = BA6475762D68463100EEDF6B /* FirebaseAuth */; };
+		BA6475792D68463100EEDF6B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = BA6475782D68463100EEDF6B /* FirebaseFirestore */; };
+		BA64757B2D68463100EEDF6B /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = BA64757A2D68463100EEDF6B /* FirebaseStorage */; };
+		BA64757E2D68467900EEDF6B /* WilliKit in Frameworks */ = {isa = PBXBuildFile; productRef = BA64757D2D68467900EEDF6B /* WilliKit */; };
+		BA6475822D6846E700EEDF6B /* LoadingOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA64757F2D6846E700EEDF6B /* LoadingOverlayView.swift */; };
+		BA6475832D6846E700EEDF6B /* SDLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6475802D6846E700EEDF6B /* SDLoadingView.swift */; };
+		BA6475852D68470B00EEDF6B /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6475842D68470B00EEDF6B /* Authentication.swift */; };
+		BA6475872D684BFF00EEDF6B /* DreamFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6475862D684BFA00EEDF6B /* DreamFetcher.swift */; };
+		BA70BE7E2C49061300D5BAB1 /* WilliDreamsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA70BE7D2C49061300D5BAB1 /* WilliDreamsApp.swift */; };
+		BA70BE802C49061300D5BAB1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA70BE7F2C49061300D5BAB1 /* ContentView.swift */; };
+		BA70BE822C49061500D5BAB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA70BE812C49061500D5BAB1 /* Assets.xcassets */; };
+		BA70BE852C49061500D5BAB1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA70BE842C49061500D5BAB1 /* Preview Assets.xcassets */; };
+		BA70BE8C2C49082600D5BAB1 /* MyDreams.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA70BE8B2C49082600D5BAB1 /* MyDreams.swift */; };
+		BA70BE902C49083B00D5BAB1 /* DreamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA70BE8F2C49083B00D5BAB1 /* DreamModel.swift */; };
+		BA7A96752E188CA1000F2617 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = BA7A96742E188CA1000F2617 /* AppIcon.icon */; };
+		BA7A96772E188FA1000F2617 /* FoundationModelsAISummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7A96762E188F9D000F2617 /* FoundationModelsAISummary.swift */; };
+		BA81FA432EB532A6004167E7 /* ProfileOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA81FA3F2EB532A6004167E7 /* ProfileOptions.swift */; };
+		BA81FA442EB532A6004167E7 /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA81FA412EB532A6004167E7 /* ProfileHeader.swift */; };
+		BA81FA452EB532A6004167E7 /* CircularText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA81FA402EB532A6004167E7 /* CircularText.swift */; };
+		BA81FA462EB532A6004167E7 /* WilliProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA81FA422EB532A6004167E7 /* WilliProfile.swift */; };
+		BA81FA472EB532A6004167E7 /* AppUserContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA81FA3E2EB532A6004167E7 /* AppUserContent.swift */; };
+		BA9127B42C59A75600CBE167 /* FriendsDreamsScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9127B32C59A75100CBE167 /* FriendsDreamsScroller.swift */; };
+		BA9127B62C59A7B300CBE167 /* FriendsDreamsListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9127B52C59A79500CBE167 /* FriendsDreamsListsView.swift */; };
+		BA9127B82C59A7D600CBE167 /* DreamCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9127B72C59A7D400CBE167 /* DreamCloud.swift */; };
+		BA9127BC2C59B4A400CBE167 /* FriendDreamRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9127BB2C59B49900CBE167 /* FriendDreamRootView.swift */; };
+		BAA97A642D6AD19B00CEFABD /* FriendAdder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA97A632D6AD19500CEFABD /* FriendAdder.swift */; };
+		BAAA07712D7C384300A2705A /* DreamNetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAA07702D7C383E00A2705A /* DreamNetworkView.swift */; };
+		BACA54D42D8CD1480038D00F /* PhoneNumberInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACA54D32D8CD1440038D00F /* PhoneNumberInput.swift */; };
+		BACD9CE92D8BD0A400F3EA10 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BACD9CE82D8BD0A400F3EA10 /* InfoPlist.xcstrings */; };
+		BAFAA4E82C5297E800C6CBDB /* DreamLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFAA4E72C5297E100C6CBDB /* DreamLogView.swift */; };
+		BAFAA4FA2C53554200C6CBDB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFAA4F92C53553F00C6CBDB /* HomeView.swift */; };
+		BAFAA4FD2C53599F00C6CBDB /* AboutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFAA4FC2C53599100C6CBDB /* AboutApp.swift */; };
+		BAFAA5012C535B8E00C6CBDB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFAA5002C535B8B00C6CBDB /* Settings.swift */; };
+		BAFAA5032C535C2100C6CBDB /* AppIconChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFAA5022C535C1E00C6CBDB /* AppIconChanger.swift */; };
+		BAFAA5052C536CC500C6CBDB /* DreamSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFAA5042C536CC200C6CBDB /* DreamSlider.swift */; };
+		BAFAA5072C53731C00C6CBDB /* DreamTitleDesc.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFAA5062C53731300C6CBDB /* DreamTitleDesc.swift */; };
+		BAFAA50A2C537DA200C6CBDB /* ArchivedDreams.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFAA5092C537D9D00C6CBDB /* ArchivedDreams.swift */; };
+		BAFAA50D2C54058800C6CBDB /* NightmareStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFAA50C2C54057B00C6CBDB /* NightmareStatus.swift */; };
+		BAFC56482D94EA8900F4DE2A /* BanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFC56472D94EA8800F4DE2A /* BanView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BA1D02702C5625DB00B1BD2C /* UserObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserObject.swift; sourceTree = "<group>"; };
+		BA1D02742C56266B00B1BD2C /* FirstStartup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstStartup.swift; sourceTree = "<group>"; };
+		BA31F84D2D94D3C8001B303E /* DreamReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamReport.swift; sourceTree = "<group>"; };
+		BA3EF7922D8A7D9800A62A78 /* ContactSyncing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSyncing.swift; sourceTree = "<group>"; };
+		BA3EF7942D8A860400A62A78 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		BA4F22732D75012800A0F27A /* Manage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manage.swift; sourceTree = "<group>"; };
+		BA4F22752D75012C00A0F27A /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		BA4F22772D7569CF00A0F27A /* ProfileNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNavigationLink.swift; sourceTree = "<group>"; };
+		BA5D31B12D742C7900EFCDC2 /* FriendButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendButton.swift; sourceTree = "<group>"; };
+		BA64756E2D68450500EEDF6B /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		BA6475702D68457C00EEDF6B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		BA6475712D68457C00EEDF6B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		BA64757F2D6846E700EEDF6B /* LoadingOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingOverlayView.swift; sourceTree = "<group>"; };
+		BA6475802D6846E700EEDF6B /* SDLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDLoadingView.swift; sourceTree = "<group>"; };
+		BA6475842D68470B00EEDF6B /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		BA6475862D684BFA00EEDF6B /* DreamFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamFetcher.swift; sourceTree = "<group>"; };
+		BA70BE7A2C49061300D5BAB1 /* WilliDreams.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WilliDreams.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA70BE7D2C49061300D5BAB1 /* WilliDreamsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WilliDreamsApp.swift; sourceTree = "<group>"; };
+		BA70BE7F2C49061300D5BAB1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BA70BE812C49061500D5BAB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BA70BE842C49061500D5BAB1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BA70BE8B2C49082600D5BAB1 /* MyDreams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDreams.swift; sourceTree = "<group>"; };
+		BA70BE8F2C49083B00D5BAB1 /* DreamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamModel.swift; sourceTree = "<group>"; };
+		BA7A96742E188CA1000F2617 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
+		BA7A96762E188F9D000F2617 /* FoundationModelsAISummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationModelsAISummary.swift; sourceTree = "<group>"; };
+		BA81FA3E2EB532A6004167E7 /* AppUserContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUserContent.swift; sourceTree = "<group>"; };
+		BA81FA3F2EB532A6004167E7 /* ProfileOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileOptions.swift; sourceTree = "<group>"; };
+		BA81FA402EB532A6004167E7 /* CircularText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularText.swift; sourceTree = "<group>"; };
+		BA81FA412EB532A6004167E7 /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
+		BA81FA422EB532A6004167E7 /* WilliProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WilliProfile.swift; sourceTree = "<group>"; };
+		BA9127B32C59A75100CBE167 /* FriendsDreamsScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsDreamsScroller.swift; sourceTree = "<group>"; };
+		BA9127B52C59A79500CBE167 /* FriendsDreamsListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsDreamsListsView.swift; sourceTree = "<group>"; };
+		BA9127B72C59A7D400CBE167 /* DreamCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamCloud.swift; sourceTree = "<group>"; };
+		BA9127BB2C59B49900CBE167 /* FriendDreamRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDreamRootView.swift; sourceTree = "<group>"; };
+		BAA97A632D6AD19500CEFABD /* FriendAdder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendAdder.swift; sourceTree = "<group>"; };
+		BAAA07702D7C383E00A2705A /* DreamNetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamNetworkView.swift; sourceTree = "<group>"; };
+		BACA54D32D8CD1440038D00F /* PhoneNumberInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberInput.swift; sourceTree = "<group>"; };
+		BACD9CE82D8BD0A400F3EA10 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		BAFAA4E72C5297E100C6CBDB /* DreamLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamLogView.swift; sourceTree = "<group>"; };
+		BAFAA4F82C53543900C6CBDB /* WilliDreams.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WilliDreams.entitlements; sourceTree = "<group>"; };
+		BAFAA4F92C53553F00C6CBDB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		BAFAA4FC2C53599100C6CBDB /* AboutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutApp.swift; sourceTree = "<group>"; };
+		BAFAA5002C535B8B00C6CBDB /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		BAFAA5022C535C1E00C6CBDB /* AppIconChanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconChanger.swift; sourceTree = "<group>"; };
+		BAFAA5042C536CC200C6CBDB /* DreamSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamSlider.swift; sourceTree = "<group>"; };
+		BAFAA5062C53731300C6CBDB /* DreamTitleDesc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamTitleDesc.swift; sourceTree = "<group>"; };
+		BAFAA5092C537D9D00C6CBDB /* ArchivedDreams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivedDreams.swift; sourceTree = "<group>"; };
+		BAFAA50B2C53840F00C6CBDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BAFAA50C2C54057B00C6CBDB /* NightmareStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightmareStatus.swift; sourceTree = "<group>"; };
+		BAFC56472D94EA8800F4DE2A /* BanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BA70BE772C49061300D5BAB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA1D02662C56256700B1BD2C /* FirebaseAuth in Frameworks */,
+				BA6475772D68463100EEDF6B /* FirebaseAuth in Frameworks */,
+				BA64757E2D68467900EEDF6B /* WilliKit in Frameworks */,
+				BA1D026C2C56256700B1BD2C /* FirebaseStorage in Frameworks */,
+				BA1D02682C56256700B1BD2C /* FirebaseFirestore in Frameworks */,
+				B1511F5A2E5A84F30073E86C /* FirebaseAI in Frameworks */,
+				BA64757B2D68463100EEDF6B /* FirebaseStorage in Frameworks */,
+				BA6475792D68463100EEDF6B /* FirebaseFirestore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BA1D026D2C5625A000B1BD2C /* UserManagement */ = {
+			isa = PBXGroup;
+			children = (
+				BA81FA3D2EB532A0004167E7 /* UserProfile */,
+				BA3EF7922D8A7D9800A62A78 /* ContactSyncing.swift */,
+				BA4F22752D75012C00A0F27A /* Profile.swift */,
+				BA6475842D68470B00EEDF6B /* Authentication.swift */,
+				BA6475702D68457C00EEDF6B /* LoginView.swift */,
+				BA6475712D68457C00EEDF6B /* SignUpView.swift */,
+				BA64756E2D68450500EEDF6B /* AuthManager.swift */,
+				BA1D02742C56266B00B1BD2C /* FirstStartup.swift */,
+				BA1D02702C5625DB00B1BD2C /* UserObject.swift */,
+				BAFC56472D94EA8800F4DE2A /* BanView.swift */,
+			);
+			path = UserManagement;
+			sourceTree = "<group>";
+		};
+		BA64757C2D68467900EEDF6B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BA6475812D6846E700EEDF6B /* FunAnimations */ = {
+			isa = PBXGroup;
+			children = (
+				BA64757F2D6846E700EEDF6B /* LoadingOverlayView.swift */,
+				BA6475802D6846E700EEDF6B /* SDLoadingView.swift */,
+			);
+			path = FunAnimations;
+			sourceTree = "<group>";
+		};
+		BA70BE712C49061300D5BAB1 = {
+			isa = PBXGroup;
+			children = (
+				BA70BE7C2C49061300D5BAB1 /* WilliDreams */,
+				BA64757C2D68467900EEDF6B /* Frameworks */,
+				BA70BE7B2C49061300D5BAB1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BA70BE7B2C49061300D5BAB1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BA70BE7A2C49061300D5BAB1 /* WilliDreams.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BA70BE7C2C49061300D5BAB1 /* WilliDreams */ = {
+			isa = PBXGroup;
+			children = (
+				BAFAA50B2C53840F00C6CBDB /* Info.plist */,
+				BAFAA4F82C53543900C6CBDB /* WilliDreams.entitlements */,
+				BA70BE8E2C49082D00D5BAB1 /* Services */,
+				BA70BE8D2C49082900D5BAB1 /* Views */,
+				BA70BE7D2C49061300D5BAB1 /* WilliDreamsApp.swift */,
+				BA70BE7F2C49061300D5BAB1 /* ContentView.swift */,
+				BA70BE812C49061500D5BAB1 /* Assets.xcassets */,
+				BA7A96742E188CA1000F2617 /* AppIcon.icon */,
+				BA70BE832C49061500D5BAB1 /* Preview Content */,
+				BA3EF7942D8A860400A62A78 /* Localizable.xcstrings */,
+				BACD9CE82D8BD0A400F3EA10 /* InfoPlist.xcstrings */,
+			);
+			path = WilliDreams;
+			sourceTree = "<group>";
+		};
+		BA70BE832C49061500D5BAB1 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				BA70BE842C49061500D5BAB1 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BA70BE8D2C49082900D5BAB1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BAA97A622D6AD18C00CEFABD /* Friends */,
+				BA6475812D6846E700EEDF6B /* FunAnimations */,
+				BA9127B22C59A74900CBE167 /* DreamCloud */,
+				BA1D026D2C5625A000B1BD2C /* UserManagement */,
+				BAFAA5082C53732100C6CBDB /* DreamLoggingViews */,
+				BAFAA4FB2C53598900C6CBDB /* Settings */,
+				BAFAA4F92C53553F00C6CBDB /* HomeView.swift */,
+				BAFAA4E72C5297E100C6CBDB /* DreamLogView.swift */,
+				BA70BE8B2C49082600D5BAB1 /* MyDreams.swift */,
+				BAFAA5092C537D9D00C6CBDB /* ArchivedDreams.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BA70BE8E2C49082D00D5BAB1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				BA7A96762E188F9D000F2617 /* FoundationModelsAISummary.swift */,
+				BAFAA50C2C54057B00C6CBDB /* NightmareStatus.swift */,
+				BA70BE8F2C49083B00D5BAB1 /* DreamModel.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		BA81FA3D2EB532A0004167E7 /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				BA81FA3E2EB532A6004167E7 /* AppUserContent.swift */,
+				BA81FA3F2EB532A6004167E7 /* ProfileOptions.swift */,
+				BA81FA402EB532A6004167E7 /* CircularText.swift */,
+				BA81FA412EB532A6004167E7 /* ProfileHeader.swift */,
+				BA81FA422EB532A6004167E7 /* WilliProfile.swift */,
+			);
+			path = UserProfile;
+			sourceTree = "<group>";
+		};
+		BA9127B22C59A74900CBE167 /* DreamCloud */ = {
+			isa = PBXGroup;
+			children = (
+				BA31F84D2D94D3C8001B303E /* DreamReport.swift */,
+				BAAA07702D7C383E00A2705A /* DreamNetworkView.swift */,
+				BA4F22772D7569CF00A0F27A /* ProfileNavigationLink.swift */,
+				BA6475862D684BFA00EEDF6B /* DreamFetcher.swift */,
+				BA9127BB2C59B49900CBE167 /* FriendDreamRootView.swift */,
+				BA9127B72C59A7D400CBE167 /* DreamCloud.swift */,
+				BA9127B52C59A79500CBE167 /* FriendsDreamsListsView.swift */,
+				BA9127B32C59A75100CBE167 /* FriendsDreamsScroller.swift */,
+			);
+			path = DreamCloud;
+			sourceTree = "<group>";
+		};
+		BAA97A622D6AD18C00CEFABD /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				BACA54D32D8CD1440038D00F /* PhoneNumberInput.swift */,
+				BA5D31B12D742C7900EFCDC2 /* FriendButton.swift */,
+				BAA97A632D6AD19500CEFABD /* FriendAdder.swift */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		BAFAA4FB2C53598900C6CBDB /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				BA4F22732D75012800A0F27A /* Manage.swift */,
+				BAFAA5022C535C1E00C6CBDB /* AppIconChanger.swift */,
+				BAFAA5002C535B8B00C6CBDB /* Settings.swift */,
+				BAFAA4FC2C53599100C6CBDB /* AboutApp.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		BAFAA5082C53732100C6CBDB /* DreamLoggingViews */ = {
+			isa = PBXGroup;
+			children = (
+				BAFAA5062C53731300C6CBDB /* DreamTitleDesc.swift */,
+				BAFAA5042C536CC200C6CBDB /* DreamSlider.swift */,
+			);
+			path = DreamLoggingViews;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BA70BE792C49061300D5BAB1 /* WilliDreams */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA70BE882C49061500D5BAB1 /* Build configuration list for PBXNativeTarget "WilliDreams" */;
+			buildPhases = (
+				BA70BE762C49061300D5BAB1 /* Sources */,
+				BA70BE772C49061300D5BAB1 /* Frameworks */,
+				BA70BE782C49061300D5BAB1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WilliDreams;
+			productName = WilliDreams;
+			productReference = BA70BE7A2C49061300D5BAB1 /* WilliDreams.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BA70BE722C49061300D5BAB1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					BA70BE792C49061300D5BAB1 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = BA70BE752C49061300D5BAB1 /* Build configuration list for PBXProject "WilliDreams" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"fr-CA",
+				de,
+			);
+			mainGroup = BA70BE712C49061300D5BAB1;
+			packageReferences = (
+				BA6475742D6845B400EEDF6B /* XCRemoteSwiftPackageReference "WilliKit" */,
+				BA6475752D68463100EEDF6B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
+			productRefGroup = BA70BE7B2C49061300D5BAB1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BA70BE792C49061300D5BAB1 /* WilliDreams */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BA70BE782C49061300D5BAB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA70BE852C49061500D5BAB1 /* Preview Assets.xcassets in Resources */,
+				BACD9CE92D8BD0A400F3EA10 /* InfoPlist.xcstrings in Resources */,
+				BA7A96752E188CA1000F2617 /* AppIcon.icon in Resources */,
+				BA70BE822C49061500D5BAB1 /* Assets.xcassets in Resources */,
+				BA3EF7952D8A860400A62A78 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BA70BE762C49061300D5BAB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA6475722D68457C00EEDF6B /* LoginView.swift in Sources */,
+				BA6475732D68457C00EEDF6B /* SignUpView.swift in Sources */,
+				BA70BE802C49061300D5BAB1 /* ContentView.swift in Sources */,
+				BA6475872D684BFF00EEDF6B /* DreamFetcher.swift in Sources */,
+				BACA54D42D8CD1480038D00F /* PhoneNumberInput.swift in Sources */,
+				BA70BE902C49083B00D5BAB1 /* DreamModel.swift in Sources */,
+				BA6475822D6846E700EEDF6B /* LoadingOverlayView.swift in Sources */,
+				BA6475832D6846E700EEDF6B /* SDLoadingView.swift in Sources */,
+				BA9127B42C59A75600CBE167 /* FriendsDreamsScroller.swift in Sources */,
+				BA5D31B22D742C7C00EFCDC2 /* FriendButton.swift in Sources */,
+				BA4F22762D75012C00A0F27A /* Profile.swift in Sources */,
+				BAFAA4FA2C53554200C6CBDB /* HomeView.swift in Sources */,
+				BA81FA432EB532A6004167E7 /* ProfileOptions.swift in Sources */,
+				BA81FA442EB532A6004167E7 /* ProfileHeader.swift in Sources */,
+				BA81FA452EB532A6004167E7 /* CircularText.swift in Sources */,
+				BA81FA462EB532A6004167E7 /* WilliProfile.swift in Sources */,
+				BA81FA472EB532A6004167E7 /* AppUserContent.swift in Sources */,
+				BAFC56482D94EA8900F4DE2A /* BanView.swift in Sources */,
+				BA1D02712C5625DE00B1BD2C /* UserObject.swift in Sources */,
+				BA1D02752C56266F00B1BD2C /* FirstStartup.swift in Sources */,
+				BA7A96772E188FA1000F2617 /* FoundationModelsAISummary.swift in Sources */,
+				BA64756F2D68450500EEDF6B /* AuthManager.swift in Sources */,
+				BA4F22742D75012800A0F27A /* Manage.swift in Sources */,
+				BAFAA5072C53731C00C6CBDB /* DreamTitleDesc.swift in Sources */,
+				BA9127B82C59A7D600CBE167 /* DreamCloud.swift in Sources */,
+				BA9127B62C59A7B300CBE167 /* FriendsDreamsListsView.swift in Sources */,
+				BAFAA50D2C54058800C6CBDB /* NightmareStatus.swift in Sources */,
+				BA9127BC2C59B4A400CBE167 /* FriendDreamRootView.swift in Sources */,
+				BAA97A642D6AD19B00CEFABD /* FriendAdder.swift in Sources */,
+				BA6475852D68470B00EEDF6B /* Authentication.swift in Sources */,
+				BAFAA50A2C537DA200C6CBDB /* ArchivedDreams.swift in Sources */,
+				BA31F84E2D94D3D1001B303E /* DreamReport.swift in Sources */,
+				BA4F22782D7569D400A0F27A /* ProfileNavigationLink.swift in Sources */,
+				BA3EF7932D8A7D9B00A62A78 /* ContactSyncing.swift in Sources */,
+				BAFAA5032C535C2100C6CBDB /* AppIconChanger.swift in Sources */,
+				BAFAA5052C536CC500C6CBDB /* DreamSlider.swift in Sources */,
+				BAFAA5012C535B8E00C6CBDB /* Settings.swift in Sources */,
+				BAFAA4FD2C53599F00C6CBDB /* AboutApp.swift in Sources */,
+				BA70BE8C2C49082600D5BAB1 /* MyDreams.swift in Sources */,
+				BAFAA4E82C5297E800C6CBDB /* DreamLogView.swift in Sources */,
+				BA70BE7E2C49061300D5BAB1 /* WilliDreamsApp.swift in Sources */,
+				BAAA07712D7C384300A2705A /* DreamNetworkView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		BA70BE862C49061500D5BAB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BA70BE872C49061500D5BAB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BA70BE892C49061500D5BAB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = WilliDreams/WilliDreams.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5.3;
+				DEVELOPMENT_ASSET_PATHS = "\"WilliDreams/Preview Content\"";
+				DEVELOPMENT_TEAM = CSHF427Z2M;
+				ENABLE_ENHANCED_SECURITY = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_POINTER_AUTHENTICATION = NO;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WilliDreams/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Checking and seeing if any of your friends use WilliDreams";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2025 William Gallegos All Rights Reserved";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.WilliamGallegos.WilliDreams;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BA70BE8A2C49061500D5BAB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = WilliDreams/WilliDreams.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5.3;
+				DEVELOPMENT_ASSET_PATHS = "\"WilliDreams/Preview Content\"";
+				DEVELOPMENT_TEAM = CSHF427Z2M;
+				ENABLE_ENHANCED_SECURITY = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_POINTER_AUTHENTICATION = NO;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WilliDreams/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSContactsUsageDescription = "Checking and seeing if any of your friends use WilliDreams";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2025 William Gallegos All Rights Reserved";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.WilliamGallegos.WilliDreams;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BA70BE752C49061300D5BAB1 /* Build configuration list for PBXProject "WilliDreams" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA70BE862C49061500D5BAB1 /* Debug */,
+				BA70BE872C49061500D5BAB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA70BE882C49061500D5BAB1 /* Build configuration list for PBXNativeTarget "WilliDreams" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA70BE892C49061500D5BAB1 /* Debug */,
+				BA70BE8A2C49061500D5BAB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BA1D02642C56256700B1BD2C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.29.0;
+			};
+		};
+		BA6475742D6845B400EEDF6B /* XCRemoteSwiftPackageReference "WilliKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WEcompany36/WilliKit";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		BA6475752D68463100EEDF6B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.8.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B1511F592E5A84F30073E86C /* FirebaseAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA6475752D68463100EEDF6B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAI;
+		};
+		BA1D02652C56256700B1BD2C /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA1D02642C56256700B1BD2C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		BA1D02672C56256700B1BD2C /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA1D02642C56256700B1BD2C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		BA1D026B2C56256700B1BD2C /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA1D02642C56256700B1BD2C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		BA6475762D68463100EEDF6B /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA6475752D68463100EEDF6B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		BA6475782D68463100EEDF6B /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA6475752D68463100EEDF6B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		BA64757A2D68463100EEDF6B /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA6475752D68463100EEDF6B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		BA64757D2D68467900EEDF6B /* WilliKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA6475742D6845B400EEDF6B /* XCRemoteSwiftPackageReference "WilliKit" */;
+			productName = WilliKit;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = BA70BE722C49061300D5BAB1 /* Project object */;
+}
