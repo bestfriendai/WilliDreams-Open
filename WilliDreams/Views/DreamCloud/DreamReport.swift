@@ -98,7 +98,7 @@ struct DreamReport: View {
         
     }
     
-    var webhookStringURL = "https://discord.com/api/webhooks/1354616900566651153/bmKW99xBvB02zmFsWdqu1gdXxtuErolAF1uPA_klIaMmoZJxfr1bU5YZmyObHCrLnvts"
+    var webhookStringURL = "Webhook URL for Discord here"
     
     func submitReport() async {
         guard let webhookURL = URL(string: webhookStringURL) else {
