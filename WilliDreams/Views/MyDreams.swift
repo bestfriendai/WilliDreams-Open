@@ -104,13 +104,9 @@ struct MyDreams: View {
                                     })
                                 }
                             }
-#if os(iOS)
-                            Rectangle()
-                                .opacity(0)
+                            // FIX: Use consistent spacer across platforms
+                            Spacer()
                                 .frame(height: 100)
-#else
-                            Text("")
-#endif
                         }
                         .padding(.horizontal)
                     }
@@ -249,13 +245,7 @@ struct MyDreams: View {
     private func fetchDreams() async {
         await dreamFetcher.fetchUserDreams(userID: userID)
     }
-
-    private func deleteDream(at offsets: IndexSet) {
-        for index in offsets {
-            let dreamToDelete = dreams[index]
-            modelContext.delete(dreamToDelete)
-        }
-    }
+    // FIX: Removed unused deleteDream(at:) function - deletion is handled inline in context menu
 }
 
 #Preview {

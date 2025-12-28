@@ -70,7 +70,8 @@ struct ProfileHeader: View {
                         .overlay {
                             HStack {
                                 ForEach(appsUsed, id: \.self) { appName in
-                                    let appLetter = Array(appName)[5]
+                                    // FIX: Safe index access to prevent crash on short app names
+                                    let appLetter = appName.count > 5 ? String(Array(appName)[5]) : String(appName.prefix(1))
                                     VStack {
                                         Image(appName)
                                             .resizable()
@@ -123,9 +124,7 @@ struct ProfileHeader: View {
                 //Text(getScoreText(studyScore: userToShow.score ?? 0))
             }
         }
-        .onAppear {
-            
-        }
+        // FIX: Removed empty onAppear block
     }
     
     func getDaysSince(eventDate: Date, currentDate: Date = Date()) -> Int {

@@ -44,10 +44,13 @@ struct BanView: View {
                         Text("Your account has been terminated.")
                             .font(.caption)
                     }
-                    Link(destination: URL(string: "https://www.williamgallegos.net/support")!,
-                         label: { Text("Submit an Appeal")
-                    })
-                    .buttonStyle(WillButtonStyle())
+                    // FIX: Safely unwrap URL instead of force unwrap
+                    if let supportURL = URL(string: "https://www.williamgallegos.net/support") {
+                        Link(destination: supportURL,
+                             label: { Text("Submit an Appeal")
+                        })
+                        .buttonStyle(WillButtonStyle())
+                    }
                 }
                 .padding()
                 .williBackground()
@@ -58,52 +61,51 @@ struct BanView: View {
         }
     }
     
+    // FIX: Use async/await with MainActor instead of DispatchQueue
     func fetchBanInfo() {
         guard !userId.isEmpty else {
             print("WILLIDEBUG: User ID is empty.")
             isLoading = false
             return
         }
-        
+
+        Task {
+            await fetchBanInfoAsync()
+        }
+    }
+
+    @MainActor
+    private func fetchBanInfoAsync() async {
         let userRef = Firestore.firestore().collection("Users").document(userId)
-        
-        userRef.getDocument { document, error in
-            if let error = error {
-                print("WILLIDEBUG: Error fetching ban info: \(error.localizedDescription)")
-                DispatchQueue.main.async {
-                    isLoading = false
-                }
+
+        do {
+            let document = try await userRef.getDocument()
+
+            guard document.exists else {
+                print("WILLIDEBUG: Document does not exist for userId: \(userId)")
+                isLoading = false
                 return
             }
-            
-            guard let document = document, document.exists else {
-                DispatchQueue.main.async {
-                    print("WILLIDEBUG: Document does not exist for userId: \(userId)")
-                    isLoading = false
-                }
-                return
-            }
-            
+
             print("WILLIDEBUG: Document Data - \(document.data() ?? [:])")
-            
-            if let isBanned = document.data()?["isBanned"] as? Bool, isBanned {
-                DispatchQueue.main.async {
-                    self.isBanned = true
-                    self.banReason = document.data()?["banReason"] as? String ?? "No reason provided."
-                    
-                    if let timestamp = document.data()?["bannedUntil"] as? Timestamp {
-                        self.bannedUntil = timestamp.dateValue()
-                    } else {
-                        self.bannedUntil = nil
-                    }
+
+            if let bannedStatus = document.data()?["isBanned"] as? Bool, bannedStatus {
+                self.isBanned = true
+                self.banReason = document.data()?["banReason"] as? String ?? "No reason provided."
+
+                if let timestamp = document.data()?["bannedUntil"] as? Timestamp {
+                    self.bannedUntil = timestamp.dateValue()
+                } else {
+                    self.bannedUntil = nil
                 }
             } else {
                 print("WILLIDEBUG: User is not banned or ban data missing.")
             }
-            
-            DispatchQueue.main.async {
-                isLoading = false
-            }
+
+            isLoading = false
+        } catch {
+            print("WILLIDEBUG: Error fetching ban info: \(error.localizedDescription)")
+            isLoading = false
         }
     }
 }
