@@ -105,7 +105,7 @@ struct MyDreams: View {
                                 }
                             }
                             // FIX: Use consistent spacer across platforms
-                            Spacer()
+                            Color.clear
                                 .frame(height: 100)
                         }
                         .padding(.horizontal)

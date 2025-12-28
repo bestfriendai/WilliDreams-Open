@@ -214,19 +214,18 @@ struct HomeView: View {
     }
     
     /// Returns the appropriate icon for a dream based on its nightmare scale
-    @ViewBuilder
     private func dreamStatusIcon(for scale: Double) -> Image {
         switch getDreamStatus(dreamScale: scale) {
         case .great:
-            Image(systemName: "face.smiling.inverse")
+            return Image(systemName: "face.smiling.inverse")
         case .good:
-            Image(systemName: "hand.thumbsup.fill")
+            return Image(systemName: "hand.thumbsup.fill")
         case .ok:
-            Image(systemName: "arrowtriangle.left.and.line.vertical.and.arrowtriangle.right.fill")
+            return Image(systemName: "arrowtriangle.left.and.line.vertical.and.arrowtriangle.right.fill")
         case .bad:
-            Image(systemName: "hand.thumbsdown.fill")
+            return Image(systemName: "hand.thumbsdown.fill")
         case .nightmare:
-            Image(systemName: "hand.raised.fill")
+            return Image(systemName: "hand.raised.fill")
         }
     }
 

@@ -31,10 +31,6 @@ struct ManageAccountView: View {
                 .ignoresSafeArea()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             VStack {
-                // FIX: Use proper spacer instead of empty Text
-                #if !os(macOS)
-                Spacer().frame(height: 1)
-                #endif
                 VStack(alignment: .leading) {
                     Text("Account Details")
                         .multilineTextAlignment(.leading)
