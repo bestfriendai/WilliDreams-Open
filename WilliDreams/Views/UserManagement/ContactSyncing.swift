@@ -61,7 +61,8 @@ struct ContactSyncing {
         let db = Firestore.firestore()
         let usersRef = db.collection("Users")
         var users: [User] = []
-        let batchSize = 30
+        // Firestore 'whereField in' limit is 10, not 30
+        let batchSize = 10
 
         do {
             for i in stride(from: 0, to: contacts.count, by: batchSize) {
@@ -99,12 +100,18 @@ struct ContactSyncing {
     func updateUserWithPhoneNumber(_ users: [User]) async {
         do {
             guard var currentUser = try await fetchCurrentUser() else { return }
-            
+
             if let firstUser = users.first {
                 currentUser.phoneNumber = firstUser.phoneNumber
             }
-            
-            currentUser.friends = users.map { $0.userUID }
+
+            // FIX: Merge new friends with existing friends instead of overwriting
+            let newFriendUIDs = users.map { $0.userUID }
+            let existingFriends = currentUser.friends ?? []
+            // Use Set to avoid duplicates, then convert back to array
+            let mergedFriends = Array(Set(existingFriends + newFriendUIDs))
+            currentUser.friends = mergedFriends
+
             saveUpdatedUser(currentUser)
         } catch {
             print("Error updating user: \(error)")
@@ -180,7 +187,8 @@ extension ContactSyncing {
         var users: [User] = []
 
         guard !phoneNumbers.isEmpty else { return [] }
-        let batchSize = 30
+        // Firestore 'whereField in' limit is 10, not 30
+        let batchSize = 10
 
         do {
             for i in stride(from: 0, to: phoneNumbers.count, by: batchSize) {

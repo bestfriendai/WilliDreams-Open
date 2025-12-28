@@ -8,6 +8,7 @@
 import SwiftUI
 import WilliKit
 import SwiftData
+import FirebaseAuth
 
 struct SettingsContent: View {
     @State private var isPhone = false
@@ -45,7 +46,7 @@ struct SettingsContent: View {
             }
             .williFormElement(colorScheme: colorScheme)
 
-            Section("Prefrences") {
+            Section("Preferences") {
                 Toggle(isOn: $canAIProcess) {
                     HStack {
                         Image(systemName: "sparkles")
@@ -154,8 +155,7 @@ struct SettingsContent: View {
                         }
 #if !os(macOS)
                         Button(action: {
-                            isLoggedIn = false
-                            //try await Auth.auth().signOut()
+                            signOut()
                         }) {
                             HStack {
                                 Image(systemName: "door.right.hand.open")
@@ -199,22 +199,16 @@ struct SettingsContent: View {
             }, footer: {
                 #if os(macOS)
                 if isLoggedIn == true {
-                    //if let userAccount = user {
-                        Button(action: {
-                            isLoggedIn = false
-                            //try await Auth.auth().signOut()
-                        }) {
-                            HStack {
-                                Image(systemName: "door.right.hand.open")
-                                    .frame(width: 30)
-                                Text("Sign Out")
-                            }
-                            #if !os(macOS)
-                            .foregroundStyle(.red)
-                            #endif
+                    Button(action: {
+                        signOut()
+                    }) {
+                        HStack {
+                            Image(systemName: "door.right.hand.open")
+                                .frame(width: 30)
+                            Text("Sign Out")
                         }
-                        .labelStyle(.titleAndIcon)
-                    //}
+                    }
+                    .labelStyle(.titleAndIcon)
                 }
                 if isLoggedIn == true {
                     Button(action: {
@@ -250,5 +244,17 @@ struct SettingsContent: View {
         .formStyle(.grouped)
         .williFormBackground(colorScheme: colorScheme)
         .navigationTitle("Settings")
+    }
+
+    /// Properly signs out the user from Firebase Auth and clears local state
+    private func signOut() {
+        do {
+            try Auth.auth().signOut()
+            isLoggedIn = false
+        } catch {
+            print("WILLIDEBUG: Error signing out: \(error.localizedDescription)")
+            // Still set isLoggedIn to false to allow retry
+            isLoggedIn = false
+        }
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DreamTitleDesc: View {
     @Binding var dreamTitle: String
-    @Binding var dreamDescriptiom: String
+    @Binding var dreamDescription: String
     @Binding var dreamViewState: Int
     @Binding var shouldShowTitle: Bool
     @Binding var friendsCanSee: Bool
@@ -23,7 +23,7 @@ struct DreamTitleDesc: View {
                     //.textFieldStyle(WillTextFieldStyle())
                     Divider()
                 }
-                TextField("Description", text: $dreamDescriptiom, axis: .vertical)
+                TextField("Description", text: $dreamDescription, axis: .vertical)
                     .textFieldStyle(.plain)
                 Spacer()
                 #if os(iOS)

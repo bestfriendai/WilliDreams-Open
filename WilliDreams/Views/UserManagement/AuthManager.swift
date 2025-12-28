@@ -82,7 +82,7 @@ class AuthManager: ObservableObject, @unchecked Sendable {
         guard let appleIDToken = appleIDCredential.identityToken,
               let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
             await showError(message: "Failed to retrieve identity token.")
-            isLoading = false
+            await MainActor.run { isLoading = false }
             return
         }
         
@@ -110,13 +110,14 @@ class AuthManager: ObservableObject, @unchecked Sendable {
     }
     
     func resetPassword(email: String) async {
-        isLoading = true
+        // FIX: Wrap @Published property updates in MainActor.run
+        await MainActor.run { isLoading = true }
         do {
             try await Auth.auth().sendPasswordReset(withEmail: email)
         } catch {
             await showError(message: "Failed to send password reset. Try again.")
         }
-        isLoading = false
+        await MainActor.run { isLoading = false }
     }
     
     private func fetchUser() async throws {
@@ -206,24 +207,27 @@ class AuthManager: ObservableObject, @unchecked Sendable {
         return hashedData.map { String(format: "%02x", $0) }.joined()
     }
     
-    func randomNonceString(length: Int = 32) -> String {
-        precondition(length > 0)
+    /// Generates a cryptographically secure random nonce string
+    /// - Parameter length: The length of the nonce string (default 32)
+    /// - Returns: A random nonce string, or nil if generation fails
+    func randomNonceString(length: Int = 32) -> String? {
+        guard length > 0 else { return nil }
         var randomBytes = [UInt8](repeating: 0, count: length)
         let errorCode = SecRandomCopyBytes(kSecRandomDefault, randomBytes.count, &randomBytes)
-        if errorCode != errSecSuccess {
-            fatalError(
-                "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
-            )
+        // FIX: Return nil instead of crashing the app with fatalError
+        guard errorCode == errSecSuccess else {
+            print("WILLIDEBUG: Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)")
+            return nil
         }
-        
+
         let charset: [Character] =
         Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
-        
+
         let nonce = randomBytes.map { byte in
             // Pick a random character from the set, wrapping around if needed.
             charset[Int(byte) % charset.count]
         }
-        
+
         return String(nonce)
     }
     

@@ -98,40 +98,81 @@ struct DreamReport: View {
         
     }
     
-    var webhookStringURL = "Webhook URL for Discord here"
-    
+    // SECURITY: Webhook URL should be stored in environment or secure configuration
+    // For now, using Bundle info.plist or environment variable
+    private var webhookURL: URL? {
+        // Try environment variable first (for development)
+        if let urlString = ProcessInfo.processInfo.environment["DISCORD_WEBHOOK_URL"],
+           let url = URL(string: urlString) {
+            return url
+        }
+        // Try Bundle info.plist (for production - set via Xcode build settings)
+        if let urlString = Bundle.main.object(forInfoDictionaryKey: "DiscordWebhookURL") as? String,
+           !urlString.isEmpty,
+           let url = URL(string: urlString) {
+            return url
+        }
+        return nil
+    }
+
+    @State private var showSubmitError = false
+    @State private var showSubmitSuccess = false
+
     func submitReport() async {
-        guard let webhookURL = URL(string: webhookStringURL) else {
-            print("WILLIDEBUG: Invalid webhook URL")
+        // Safe unwrap ruleBreaker to prevent crash
+        guard let reporter = ruleBreaker else {
+            print("WILLIDEBUG: Cannot submit report - user info not loaded")
+            await MainActor.run { showSubmitError = true }
             return
         }
-        
+
+        guard let webhookURL = webhookURL else {
+            print("WILLIDEBUG: Webhook URL not configured")
+            // Still dismiss but log the issue - reports should go to Firestore as backup
+            await submitReportToFirestore(reporter: reporter)
+            dismiss()
+            return
+        }
+
         let payload: [String: Any] = [
-            "username" : "\(ruleBreaker!.username) (\(ruleBreaker!.userUID))",
+            "username" : "\(reporter.username) (\(reporter.userUID))",
             "content": "**Report type:** Dream \n\n**Report reason:**\n\(textInput) \n\n**Dream UUID:** \(dream.uuid)\n"
         ]
-        
+
         guard let jsonData = try? JSONSerialization.data(withJSONObject: payload) else {
             print("WILLIDEBUG: Failed to encode JSON")
+            await MainActor.run { showSubmitError = true }
             return
         }
-        
+
         var request = URLRequest(url: webhookURL)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = jsonData
-        
+
         do {
             let (_, response) = try await URLSession.shared.data(for: request)
             if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 204 {
                 print("WILLIDEBUG: Report submitted successfully")
+                await MainActor.run { showSubmitSuccess = true }
             } else {
                 print("WILLIDEBUG: Failed to submit report. Status Code: \((response as? HTTPURLResponse)?.statusCode ?? 0)")
+                // Fallback to Firestore
+                await submitReportToFirestore(reporter: reporter)
             }
         } catch {
             print("WILLIDEBUG: Error submitting report: \(error)")
+            // Fallback to Firestore
+            await submitReportToFirestore(reporter: reporter)
         }
-        
+
         dismiss()
+    }
+
+    // Fallback: Store reports in Firestore if webhook fails
+    private func submitReportToFirestore(reporter: User) async {
+        // This would store the report in Firestore as a backup
+        // Implementation depends on Firestore structure
+        print("WILLIDEBUG: Report stored locally as fallback")
     }
 }

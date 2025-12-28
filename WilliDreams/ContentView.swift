@@ -92,7 +92,8 @@ struct ContentView: View {
                     }
                 case "Friends":
                     NavigationStack(path: $navigationHandler.path.animation(.interpolatingSpring)) {
-                        DreamRootView()
+                        // FIX: Use FriendsDreamsScroller instead of incomplete DreamRootView
+                        FriendsDreamsScroller()
                     }
                 case "Settings":
                     NavigationStack(path: $navigationHandler.path.animation(.interpolatingSpring)) {

@@ -15,12 +15,12 @@ struct DreamLogView: View {
     @AppStorage("aiSummary") private var aiSummary = ""
     @AppStorage("canAIProcess") private var canAIProcess = true
     
-    @Environment(\.modelContext) private var modelContenxt
+    @Environment(\.modelContext) private var modelContext
     
     @Query private var dreams: [Dream]
     
     @State private var dreamTitle: String = ""
-    @State private var dreamDescriptiom: String = ""
+    @State private var dreamDescription: String = ""
     @State private var dreamRanking: Double = 1
     
     @State private var dreamViewState: Int = 1
@@ -46,7 +46,7 @@ struct DreamLogView: View {
             case 1:
                 DreamSlider(dreamLogViewState: $dreamViewState, nightmareScale: $dreamRanking)
             case 2:
-                DreamTitleDesc(dreamTitle: $dreamTitle, dreamDescriptiom: $dreamDescriptiom, dreamViewState: $dreamViewState, shouldShowTitle: $hasTitle, friendsCanSee: $friendsCanSee)
+                DreamTitleDesc(dreamTitle: $dreamTitle, dreamDescription: $dreamDescription, dreamViewState: $dreamViewState, shouldShowTitle: $hasTitle, friendsCanSee: $friendsCanSee)
             default:
                 Text("View unsupported")
                     .onAppear {
@@ -134,9 +134,9 @@ struct DreamLogView: View {
     
     func logDream() {
         isLogging = true
-        if dreamDescriptiom.isEmpty == false {
+        if dreamDescription.isEmpty == false {
             let newDream = Dream(name: dreamTitle)
-            newDream.dreamDescription = dreamDescriptiom
+            newDream.dreamDescription = dreamDescription
             newDream.date = dreamDate
             if dreamTitle.isEmpty {
                 hasTitle = false
@@ -144,7 +144,7 @@ struct DreamLogView: View {
             newDream.nightmareScale = dreamRanking
             newDream.titleVisible = hasTitle
             newDream.isPublic = friendsCanSee
-            modelContenxt.insert(newDream)
+            modelContext.insert(newDream)
             
             if isLoggedIn {
                 let dreamsCollection = Firestore.firestore().collection("UserDreams")
