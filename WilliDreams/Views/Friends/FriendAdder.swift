@@ -29,7 +29,10 @@ struct FriendAdder: View {
     @AppStorage("thisAppUsersOnly") private var thisAppUsersOnly: Bool = true
     
     @State private var contacts: [User] = []
-    
+
+    // FIX: Add debounce task for search
+    @State private var searchTask: Task<Void, Never>?
+
     var body: some View {
         ZStack {
             UIBackground()
@@ -70,7 +73,8 @@ struct FriendAdder: View {
                                 }
                             }
                         } else {
-                            ContentUnavailableView("No Friend Requests recieved", systemImage: "person.3.fill", description: Text("Try searching for a user above."))
+                            // FIX: Fixed typo "recieved" -> "received"
+                            ContentUnavailableView("No Friend Requests Received", systemImage: "person.3.fill", description: Text("Try searching for a user above."))
                         }
                     } else {
                         if isFetching {
@@ -102,25 +106,22 @@ struct FriendAdder: View {
                     }
                 }
 
-                VStack {
-                    if let contactSyncPermissionGranted = contactSyncPermissionGranted {
-                        if contactSyncPermissionGranted {
-                            
-                        } else {
-                            VStack {
-                                Text("Allow contact access to WilliDreams so you add your friends!")
-                                Button(action: {
-                                    Task {
-                                        let isAllowed = await contactSyncing.requestContactsPermission()
-                                        self.contactSyncPermissionGranted = isAllowed
-                                    }
-                                }, label: {
-                                    Text("Sync Contacts")
-                                })
-                                .buttonStyle(WillButtonStyle())
-                            }
-                            .williBackground()
+                // FIX: Simplified condition - only show prompt when permission NOT granted
+                Group {
+                    if contactSyncPermissionGranted == false {
+                        VStack {
+                            Text("Allow contact access to WilliDreams so you add your friends!")
+                            Button(action: {
+                                Task {
+                                    let isAllowed = await contactSyncing.requestContactsPermission()
+                                    self.contactSyncPermissionGranted = isAllowed
+                                }
+                            }, label: {
+                                Text("Sync Contacts")
+                            })
+                            .buttonStyle(WillButtonStyle())
                         }
+                        .williBackground()
                     }
                 }
                 .padding(.bottom)
@@ -128,7 +129,11 @@ struct FriendAdder: View {
             .searchable(text: $usernameInput)
             .navigationTitle("Add Friends")
             .onChange(of: usernameInput) {
-                Task {
+                // FIX: Debounce search to avoid firing on every keystroke
+                searchTask?.cancel()
+                searchTask = Task {
+                    try? await Task.sleep(nanoseconds: 300_000_000) // 300ms debounce
+                    guard !Task.isCancelled else { return }
                     await searchUsers()
                 }
             }
@@ -163,8 +168,9 @@ struct FriendAdder: View {
                             if user.phoneNumber == nil {
                                 phoneNumberPromptShown = true
                             } else {
-                                var arrayOfUsers = await contactSyncing.getContactsAndCheckUsers()
-                                contacts = arrayOfUsers
+                                // FIX: Use let instead of var since value isn't mutated
+                                let fetchedUsers = await contactSyncing.getContactsAndCheckUsers()
+                                contacts = fetchedUsers
                             }
                         }
                     }

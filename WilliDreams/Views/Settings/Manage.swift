@@ -31,9 +31,6 @@ struct ManageAccountView: View {
                 .ignoresSafeArea()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             VStack {
-                if #unavailable(macOS 26) {
-                    Text("")
-                }
                 VStack(alignment: .leading) {
                     Text("Account Details")
                         .multilineTextAlignment(.leading)
@@ -81,7 +78,8 @@ struct ManageAccountView: View {
                             }
                             .withHoverEffect()
                             
-                            Text("We will keep your dreams on this device so if you choose to create a new account, you can continue to use your dreams..")
+                            // FIX: Fixed double period typo
+                            Text("We will keep your dreams on this device so if you choose to create a new account, you can continue to use your dreams.")
                                 .multilineTextAlignment(.leading)
                                 .padding(.horizontal)
                                 .font(.caption)
@@ -114,18 +112,46 @@ struct ManageAccountView: View {
         Task {
             do {
                 try await Auth.auth().sendPasswordReset(withEmail: user.userEmail)
-                resetPasswordPrompt = true
+                await MainActor.run { resetPasswordPrompt = true }
             } catch {
+                // FIX: Log error instead of silently ignoring
+                print("WILLIDEBUG: Failed to send password reset: \(error.localizedDescription)")
             }
         }
     }
 
+    // FIX: Complete account deletion - delete Firestore data before Auth account
     func deleteAccount() {
-        Auth.auth().currentUser?.delete { error in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                isLoggedIn = false
+        Task {
+            do {
+                let userUID = user.userUID
+                let db = Firestore.firestore()
+
+                // Delete user's dreams from UserDreams collection
+                let dreamsCollection = db.collection("UserDreams").document(userUID).collection("dreams")
+                let dreamDocs = try await dreamsCollection.getDocuments()
+                for doc in dreamDocs.documents {
+                    try await doc.reference.delete()
+                }
+
+                // Delete the UserDreams document
+                try await db.collection("UserDreams").document(userUID).delete()
+
+                // Delete the User document
+                try await db.collection("Users").document(userUID).delete()
+
+                // Delete profile picture from Storage (if exists)
+                let storageRef = Storage.storage().reference().child("user-profile-pictures/\(userUID).jpg")
+                try? await storageRef.delete()
+
+                // Finally, delete the Firebase Auth account
+                try await Auth.auth().currentUser?.delete()
+
+                await MainActor.run {
+                    isLoggedIn = false
+                }
+            } catch {
+                print("WILLIDEBUG: Error deleting account: \(error.localizedDescription)")
             }
         }
     }

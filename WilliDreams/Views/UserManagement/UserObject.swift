@@ -94,7 +94,8 @@ func getDefaultPFP() -> Data {
     let defaultImage = defaultPFPs().randomElement() ?? "Placeholder"
     var data: Data = Data()
     #if os(macOS)
-    if let image = NSImage(named: "defaultImage") {
+    // FIX: Use variable `defaultImage` instead of hardcoded string "defaultImage"
+    if let image = NSImage(named: defaultImage) {
         if let tiffData = image.tiffRepresentation,
            let bitmapImageRep = NSBitmapImageRep(data: tiffData) {
             let jpegData = bitmapImageRep.representation(using: .jpeg, properties: [.compressionFactor: 0.7])
@@ -129,24 +130,24 @@ func getUser(username: String) async -> User? {
     }
 }
 
+// FIX: Use direct document fetch instead of query since userUID is the document ID
 func getUser(userID: String) async -> User? {
-    
+    guard !userID.isEmpty else { return nil }
+
     do {
-        let querySnapshot = try await Firestore.firestore().collection("Users")
-            .whereField("userUID", isEqualTo: userID)
-            .getDocuments()
-        
-        // Check for document existence
-        guard let documents = querySnapshot.documents.first else {
-            return nil // No user found with that username
+        // Directly fetch by document ID (more efficient than query)
+        let documentSnapshot = try await Firestore.firestore()
+            .collection("Users")
+            .document(userID)
+            .getDocument()
+
+        guard documentSnapshot.exists else {
+            return nil // No user found with that ID
         }
-        
-        // Decode the first document (assuming unique username)
-        return try documents.data(as: User.self)
-        
+
+        return try documentSnapshot.data(as: User.self)
     } catch {
         print("WILLIDEBUG: \(error.localizedDescription)")
-        // Consider returning a specific error value or throwing a custom error
         return nil
     }
 }
@@ -158,11 +159,11 @@ func defaultPFPs() -> [String] {
 func updateUserProfilePicture(imageUrl: String, userID: String) {
     let db = Firestore.firestore()
     let userRef = db.collection("Users").document(userID)
-    userRef.updateData(["pfp": imageUrl]) { (error) in
+    userRef.updateData(["pfp": imageUrl]) { error in
         if let error = error {
-            print("Error updating user profile: \(error.localizedDescription)")
-        } else {
+            print("WILLIDEBUG: Error updating user profile: \(error.localizedDescription)")
         }
+        // FIX: Removed empty else block
     }
 }
 

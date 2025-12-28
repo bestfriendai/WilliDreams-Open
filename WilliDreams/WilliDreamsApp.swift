@@ -45,14 +45,23 @@ struct WilliDreamsApp: App {
                 }
             } else {
 #if os(macOS)
-                Text("")
-                    .alert("Unsupported Device", isPresented: .constant(true), actions: {
-                        Button("Close App") {
-                            NSApplication.shared.terminate(nil)
-                        }
-                    }, message: {
-                        Text("WilliDreams is not supported on devices without a Metal GPU.")
-                    })
+                VStack(spacing: 20) {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .font(.system(size: 60))
+                        .foregroundStyle(.yellow)
+                    Text("Unsupported Device")
+                        .font(.title)
+                        .fontWeight(.bold)
+                    Text("WilliDreams requires a Metal-compatible GPU to run.")
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(.secondary)
+                    Button("Close App") {
+                        NSApplication.shared.terminate(nil)
+                    }
+                    .buttonStyle(.borderedProminent)
+                }
+                .padding(40)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
 #endif
             }
         }
@@ -95,35 +104,22 @@ struct WilliDreamsApp: App {
 }
 
 func createModelContainer() -> ModelContainer {
-    // Local schema
-
-    // Combined schema that includes both cloud and local models
     let schema = Schema([
         Dream.self
     ])
-    
-    let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false, groupContainer: .identifier("group.com.WilliamGallegos.WilliDreams.Shared"))
+
+    let modelConfiguration = ModelConfiguration(
+        schema: schema,
+        isStoredInMemoryOnly: false,
+        groupContainer: .identifier("group.com.WilliamGallegos.WilliDreams.Shared")
+    )
 
     do {
         return try ModelContainer(for: schema, configurations: [modelConfiguration])
     } catch {
+        // Log the error for debugging before crashing
+        print("WILLIDEBUG: CRITICAL - Could not create ModelContainer: \(error.localizedDescription)")
+        // The app cannot function without persistent storage, so this is a fatal condition
         fatalError("Could not create ModelContainer: \(error)")
-    }
-}
-
-func isSixAMOnMarch24InMST(date: Date) -> Bool {
-    let timeZone = TimeZone(abbreviation: "MST")
-    var calendar = Calendar(identifier: .gregorian)
-    calendar.timeZone = timeZone!
-
-    let components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date)
-
-    if components.month == 3 &&
-       components.day == 24 &&
-       components.hour == 6 &&
-       components.minute == 0 {
-        return true
-    } else {
-        return false
     }
 }

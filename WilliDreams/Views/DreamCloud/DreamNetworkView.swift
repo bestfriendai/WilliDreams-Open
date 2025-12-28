@@ -123,32 +123,46 @@ struct DreamNetworkView: View {
                 .padding(.all, 9)
         }
         .onAppear {
-            if docListener == nil {
-                docListener = Firestore.firestore().collection("UserDreams").document(dream.author).collection("dreams").document(dream.id ?? "").addSnapshotListener({ snapshot, error in
-                    if let snapshot {
-                        if snapshot.exists {
-                            print("WILLIDEBUG: Document exists")
-                            if let updatedPost = try? snapshot.data(as: DreamCloud.self) {
-                                withAnimation {
-                                    dream = updatedPost
-                                    print("WILLIDEBUG: Attempted to update")
-                                }
-                            }
-                        } else {
-                            print("WILLIDEBUG: Document does not exist")
-                        }
-                    }
-                    
-                    if let error = error {
-                        print("WILLIDEBUG: Firestore error: \(error.localizedDescription)")
-                    }
-                })
-            }
+            setupListener()
+        }
+        .onDisappear {
+            // MEMORY LEAK FIX: Remove Firestore listener when view disappears
+            docListener?.remove()
+            docListener = nil
         }
         .sheet(isPresented: $reportScreenShown) {
             NavigationStack {
                 DreamReport(dream: dream)
             }
         }
+    }
+
+    /// Sets up the Firestore listener for real-time updates
+    private func setupListener() {
+        // Prevent duplicate listeners and guard against missing ID
+        guard docListener == nil, let dreamID = dream.id, !dreamID.isEmpty else { return }
+
+        docListener = Firestore.firestore()
+            .collection("UserDreams")
+            .document(dream.author)
+            .collection("dreams")
+            .document(dreamID)
+            .addSnapshotListener { snapshot, error in
+                if let error = error {
+                    print("WILLIDEBUG: Firestore error: \(error.localizedDescription)")
+                    return
+                }
+
+                guard let snapshot = snapshot, snapshot.exists else {
+                    print("WILLIDEBUG: Document does not exist")
+                    return
+                }
+
+                if let updatedPost = try? snapshot.data(as: DreamCloud.self) {
+                    withAnimation {
+                        dream = updatedPost
+                    }
+                }
+            }
     }
 }

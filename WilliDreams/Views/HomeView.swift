@@ -87,31 +87,11 @@ struct HomeView: View {
                             ForEach(dreamsToShow) { dream in
                                 VStack {
                                     HStack {
-                                        Group {
-                                            if dream.nightmareScale >= 0.9 {
-                                                Image(systemName: "face.smiling.inverse")
-                                                    .resizable()
-                                                    .scaledToFit()
-                                            } else if dream.nightmareScale >= 0.6 {
-                                                Image(systemName: "hand.thumbsup.fill")
-                                                    .resizable()
-                                                    .scaledToFit()
-                                            } else if dream.nightmareScale >= 0.4 {
-                                                Image(systemName: "arrowtriangle.left.and.line.vertical.and.arrowtriangle.right.fill")
-                                                    .resizable()
-                                                    .scaledToFit()
-                                            } else if dream.nightmareScale >= 0.2 {
-                                                Image(systemName: "hand.thumbsdown.fill")
-                                                    .resizable()
-                                                    .scaledToFit()
-                                            } else {
-                                                Image(systemName: "hand.raised.fill")
-                                                    .resizable()
-                                                    .scaledToFit()
-                                            }
-                                        }
-                                        //.resizable()
-                                        .frame(width: 32)
+                                        // FIX: Use getDreamStatus helper instead of magic numbers
+                                        dreamStatusIcon(for: dream.nightmareScale)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 32)
                                         VStack(alignment: .leading) {
                                             Text(dream.name)
                                                 .font(.title)
@@ -132,15 +112,8 @@ struct HomeView: View {
             }
         }
         .onAppear {
-            dreamsToShow.removeAll()
-            
-            var dreamIndex = 0
-            for dream in dreams.filter({$0.isArchived == false}) {
-                if dreamIndex <= 4 {
-                    dreamsToShow.append(dream)
-                    dreamIndex += 1
-                }
-            }
+            // FIX: Use prefix(5) instead of manual indexing for better performance
+            dreamsToShow = Array(dreams.filter { $0.isArchived == false }.prefix(5))
         }
 #if os(iOS)
         .overlay {
@@ -240,12 +213,29 @@ struct HomeView: View {
 #endif
     }
     
+    /// Returns the appropriate icon for a dream based on its nightmare scale
+    private func dreamStatusIcon(for scale: Double) -> Image {
+        switch getDreamStatus(dreamScale: scale) {
+        case .great:
+            return Image(systemName: "face.smiling.inverse")
+        case .good:
+            return Image(systemName: "hand.thumbsup.fill")
+        case .ok:
+            return Image(systemName: "arrowtriangle.left.and.line.vertical.and.arrowtriangle.right.fill")
+        case .bad:
+            return Image(systemName: "hand.thumbsdown.fill")
+        case .nightmare:
+            return Image(systemName: "hand.raised.fill")
+        }
+    }
+
     func getDreamStreak() -> Int {
         let sortedDreams = dreams.sorted { $0.date > $1.date }
-        guard !sortedDreams.isEmpty else { return 0 }
-        
+        // FIX: Use guard let instead of force unwrap
+        guard let firstDream = sortedDreams.first else { return 0 }
+
         var streak = 1
-        var previousDate = Calendar.current.startOfDay(for: sortedDreams.first!.date)
+        var previousDate = Calendar.current.startOfDay(for: firstDream.date)
         
         for dream in sortedDreams.dropFirst() {
             let currentDate = Calendar.current.startOfDay(for: dream.date)

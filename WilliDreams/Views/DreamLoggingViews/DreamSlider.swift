@@ -12,7 +12,18 @@ struct DreamSlider: View {
     @Binding var nightmareScale: Double
     
     @State private var image: String = "face.smiling.inverse"
-    
+
+    // FIX: Computed property with proper exclusive color logic
+    private var dreamScaleColor: Color {
+        if nightmareScale >= 0.6 {
+            return .green
+        } else if nightmareScale >= 0.4 {
+            return .yellow
+        } else {
+            return .red
+        }
+    }
+
     var body: some View {
         VStack {
             Text("How was your dream last night?")
@@ -21,35 +32,14 @@ struct DreamSlider: View {
                 .multilineTextAlignment(.center)
             Spacer()
             VStack {
+                // FIX: Use proper exclusive color logic via computed property
                 if #available(iOS 18, macOS 15, *) {
                     Image(systemName: image)
-                        .modifierIf(nightmareScale >= 0.6) { element in
-                            element
-                                .foregroundStyle(.green)
-                        }
-                        .modifierIf(nightmareScale >= 0.4) { element in
-                            element
-                                .foregroundStyle(.yellow)
-                        }
-                        .modifierIf(nightmareScale < 0.4 && nightmareScale >= 0) { element in
-                            element
-                                .foregroundStyle(.red)
-                        }
+                        .foregroundStyle(dreamScaleColor)
                         .contentTransition(.symbolEffect(.replace.magic(fallback: .replace.downUp)))
                 } else {
                     Image(systemName: image)
-                        .modifierIf(nightmareScale >= 0.6) { element in
-                            element
-                                .foregroundStyle(.green)
-                        }
-                        .modifierIf(nightmareScale >= 0.4) { element in
-                            element
-                                .foregroundStyle(.yellow)
-                        }
-                        .modifierIf(nightmareScale < 0.4 && nightmareScale >= 0) { element in
-                            element
-                                .foregroundStyle(.red)
-                        }
+                        .foregroundStyle(dreamScaleColor)
                         .contentTransition(.symbolEffect(.replace))
                 }
             }
